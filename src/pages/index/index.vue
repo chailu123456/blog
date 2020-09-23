@@ -1,14 +1,16 @@
 <template>
   <div class="do-blog-index">
     <Header></Header>
-    <router-view/>
+    <div class="blog-body">
+      <router-view/>
+    </div>
     <Footer></Footer>
   </div>
 </template>
 <script>
+import './index.scss';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
-
 export default {
    data() {
     return {
