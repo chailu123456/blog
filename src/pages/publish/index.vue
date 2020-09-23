@@ -1,6 +1,6 @@
 <template>
   <div class="do-blog-publish">
-    发表
+    发表文章
   </div>
 </template>
 <script>
