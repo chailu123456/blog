@@ -2,7 +2,9 @@
   <div class="do-blog-header">
     <div class="do-blog-content">
       <div class="do-blog-logo">
-        <img src="@/assets/logos.png" alt="">
+        <h3>MY</h3>
+        <h3>BLOG</h3>
+        <!-- <img src="@/assets/logos.png" alt=""> -->
       </div>
       <div class="do-blog-tab">
         <el-tabs v-model="activeName" @tab-click="handleClick(activeName)">
@@ -12,6 +14,7 @@
         </el-tabs>
       </div>
       <div class="do-blog-person">
+        <span @click="loginOut">Hi,请登录</span>
         <p>欢迎来到小柴的博客~</p>
       </div>
     </div>
@@ -29,6 +32,9 @@ export default {
     handleClick(tab, event) {
       console.log(tab);
       this.$router.push(`/${tab}`)
+    },
+    loginOut() {
+      this.$router.push('/login')
     }
   }
 }
