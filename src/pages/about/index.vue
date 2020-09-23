@@ -1,6 +1,6 @@
 <template>
   <div class="do-blog-about">
-    关于
+    这是一生关于你的风景啊
   </div>
 </template>
 <script>
