@@ -14,14 +14,17 @@
         </el-tabs>
       </div>
       <div class="do-blog-person">
-        <span @click="loginOut">Hi,请登录</span>
+        <span>Hi,{{username}}</span>
+        <span @click="loginOut">退出</span>
+        <span @click="loginOut" v-if="!username">Hi,请登录</span>
         <p>欢迎来到小柴的博客~</p>
       </div>
     </div>
   </div>
 </template>
 <script>
-import './index.scss'
+import './index.scss';
+import { mapState, mapActions } from 'vuex';
 export default {
    data() {
     return {
@@ -30,12 +33,21 @@ export default {
   },
   methods: {
     handleClick(tab, event) {
-      console.log(tab);
       this.$router.push(`/${tab}`)
     },
     loginOut() {
+      localStorage.clear()
+      this.$store.dispatch('increment', '')
       this.$router.push('/login')
     }
+  },
+  computed: {
+    ...mapState({
+      username: state => state.username
+    }),
+    ...mapActions([
+      'increment'
+    ])
   }
 }
 </script>

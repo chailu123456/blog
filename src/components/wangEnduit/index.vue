@@ -119,10 +119,10 @@ export default {
   z-index: 0;  
 }  
 .toolbar {  
-  border: 1px solid #ccc;  
+  border: 1px solid #DCDFE6;  
 }  
 .text {  
-  border: 1px solid #ccc;  
+  border: 1px solid #DCDFE6;  
   height: 400px;
   min-height: 400px;  
 }

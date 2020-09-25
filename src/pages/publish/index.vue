@@ -2,7 +2,15 @@
   <div class="do-blog-publish">
     <div class="publish-title">
       <span class="titles">标题</span>
-      <el-input class="title-input" v-model="input" placeholder="请输入标题"></el-input>
+      <el-input class="title-input" v-model="title" placeholder="请输入标题"></el-input>
+    </div>
+    <div class="publish-select">
+      <span class="titles">分类</span>
+      <div class="select-radio">
+        <el-radio v-model="radio" label="1">HTML/CSS</el-radio>
+        <el-radio v-model="radio" label="2">JS(Vue/React)</el-radio>
+        <el-radio v-model="radio" label="3">其它</el-radio>
+      </div>
     </div>
     <div class="publish-edit">
       <span class="publish-content">内容</span>
@@ -22,8 +30,8 @@ export default {
   name: 'publish',
    data() {
     return {
-      input: '',
-      test:'',  
+      title: '',
+      radio: '1',
       isClear: false,  
       detail:''
     }

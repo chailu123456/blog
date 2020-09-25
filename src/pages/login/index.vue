@@ -20,6 +20,8 @@
 </template>
 <script>
 import './index.scss';
+import api from '@/api/api.js';
+console.log(api)
 export default {
    data() {
      var checkAge = (rule, value, callback) => {
@@ -51,10 +53,21 @@ export default {
   },
   methods: {
     submitForm(formName) {
-      this.$refs[formName].validate((valid) => {
+      this.$refs[formName].validate( async (valid) => {
         if (valid) {
-          console.log(this.ruleForm)
-          this.$router.push('/')
+          let data = await api.login(this.ruleForm);
+          console.log(data)
+          if(data.data.length > 0) {
+            this.$store.dispatch('increment', this.ruleForm.account).then(v => {
+              this.$router.push({ path: '/' })
+            })
+          } else {
+            this.$message({
+              message: '账号密码有误',
+              type: 'warning'
+            });
+          }
+          
         } else {
           console.log('error submit!!');
           return false;

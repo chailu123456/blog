@@ -15,6 +15,16 @@
       display: inline-block;
     }
   }
+  .publish-select {
+    .titles {
+      display: inline-block;
+      width: 76px;
+      padding: 20px;
+    }
+    .select-radio {
+      display: inline-block;
+    }
+  }
   .publish-edit {
     overflow: hidden;
     .publish-content {
@@ -25,6 +35,9 @@
     }
     .publish-content-edit {
       float: left;
+      padding-left: 0;
+      width: 920px;
+      margin-left: 4px;
     }
   }
   .submit {

@@ -4,6 +4,7 @@
   </div>
 </template>
 <script>
+import './index.scss';
 export default {
   name: 'about',
    data() {

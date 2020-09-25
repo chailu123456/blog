@@ -31,12 +31,19 @@
       font-size: 26px;
       height: 70px;
       line-height: 70px;
+      .el-tabs__header{
+        width: 188px;
+      }
+      .el-tabs__item {
+        font-size: 18px;
+      }
     }
     .article-content-list {
       display: flex;
       justify-content: space-around;
+      margin-top: 20px;
       .content-list-left {
-        width: 68%;
+        width: 98%;
         margin-right: 2%;
         li {
           overflow: hidden;
@@ -97,13 +104,8 @@
           border: 1px solid #eaeaea;
           overflow: hidden;
           padding: 10px 14px;
-          .el-input__inner:focus {
-            border-color: #3f2863;
-          }
           .el-button--primary {
             margin-left: 10px;
-            background-color: #3f2863;
-            border-color: #3f2863;
           }
         }
         .content-list-saying {
@@ -126,7 +128,7 @@
             padding: 15px;
             h3 {
               color: #3f2863;
-              font-size: 20px;
+              font-size: 18px;
               margin: 0px 0px 10px;
             }
             p {

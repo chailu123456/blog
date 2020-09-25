@@ -1,0 +1,24 @@
+.do-article-detail {
+  width: 1000px;
+  margin: 0 auto;
+  .detail-show {
+    text-align: center;
+    h3 {
+      color: #333;
+      line-height:80px;
+    }
+    .detail-show-time {
+      color: #777;
+    }
+  }
+  .detail-artice {
+    .artice {
+      margin-top: 20px;
+      p {
+        text-indent: 2em;
+        line-height: 24px;
+        color: #333;
+      }
+    }
+  }
+}

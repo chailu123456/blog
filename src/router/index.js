@@ -14,7 +14,12 @@ export default new Router({
         {
           path: '/article',
           component: () => import('@/pages/article'),
-          name: 'Article',
+          name: 'Article'
+        },
+        {
+          path: '/article/detail/:id',
+          name: 'detail',
+          component: () => import('@/pages/template'),
         },
         {
           path: '/publish',
@@ -29,9 +34,9 @@ export default new Router({
       ]
     },
     {
-      path: '/Login',
+      path: '/login',
       name: 'Login',
       component: () => import('@/pages/login'),
-    }
+    },
   ]
 })
