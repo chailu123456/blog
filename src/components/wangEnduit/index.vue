@@ -123,7 +123,9 @@ export default {
           // insert 是获取图片 url 后，插入到编辑器的方法
 
           // 上传代码返回结果之后，将图片插入到编辑器中
-          let imgUrl = 'http://localhost:8088/'+ data.data.url
+          
+          // let imgUrl = 'http://localhost:8088/'+ data.data.url
+          let imgUrl = 'http://81.68.105.76:8088'+ data.data.url
           insert(imgUrl)
         }
       }
