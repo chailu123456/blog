@@ -32,7 +32,7 @@
       height: 70px;
       line-height: 70px;
       .el-tabs__header{
-        width: 188px;
+        width: 266px;
       }
       .el-tabs__item {
         font-size: 18px;
@@ -59,7 +59,7 @@
             cursor: pointer;
             border-color: #3f2863;
           }
-          img {
+          img.title-img {
             width: 30%;
             margin-right: 2%;
           }
@@ -174,7 +174,7 @@
                 width: 68%;
                 .hot-show-title {
                   height: 74px;
-                  line-height: 20px;
+                  line-height: 34px;
                   color: #555;
                   width: 100%;
                   font-size:14px;
@@ -198,9 +198,9 @@
                   -webkit-box-orient: vertical; /* 设置盒子内排列顺序为纵向 */
                   -webkit-line-clamp: 4;        /* 限制块元素显示的文本的行数 */
                 }
-                .hot-show-time {
+                .hot-show-updatetime {
                   color: #999;
-                  font-size: 14px;
+                  font-size: 12px;
                 }
               }
             }

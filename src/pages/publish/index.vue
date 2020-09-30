@@ -14,7 +14,7 @@
     </div>
     <div class="publish-edit">
       <span class="publish-content">内容</span>
-      <editor-bar class="publish-content-edit" v-model="detail" :isClear="isClear" @change="change"></editor-bar>  
+      <editor-bar class="publish-content-edit" v-model="detail" :isClear="isClear" title="title" @change="change"></editor-bar>  
     </div>
     <div class="submit">
       <el-button type="primary" @click="submit">发布</el-button>
@@ -25,7 +25,7 @@
 <script>
 import './index.scss';
 import EditorBar from '@/components/wangEnduit';
-
+import api from '@/api/api.js';
 export default {
   name: 'publish',
    data() {
@@ -33,24 +33,34 @@ export default {
       title: '',
       radio: '1',
       isClear: false,  
-      detail:''
+      detail: ''
     }
   },
   methods: {
     change(val) {  
-        console.log(val)  
+      console.log(val)  
     },
     submit() {
-      this.$message({
-        message: '你不配,因为你傻',
-        type: 'warning'
-      });
+      let val = {
+        title: this.title,
+        type: this.radio,
+        content: this.detail,
+      }
+      this.getDate(val)
+      // this.$message({
+      //   message: '你不配,因为你傻',
+      //   type: 'warning'
+      // });
     },
     cancle() {
       this.$message({
         message: '你还不配,因为你蠢',
         type: 'warning'
       });
+    },
+    async getDate(params) {
+      let data = await api.blogAdd(params);
+      console.log(data)
     }
   },
   components: {

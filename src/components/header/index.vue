@@ -11,6 +11,7 @@
           <el-tab-pane label="文章" name="article"></el-tab-pane>
           <el-tab-pane label="发表" name="publish"></el-tab-pane>
           <el-tab-pane label="关于" name="about"></el-tab-pane>
+          <el-tab-pane label="管理" name="manage"></el-tab-pane>
         </el-tabs>
       </div>
       <div class="do-blog-person">

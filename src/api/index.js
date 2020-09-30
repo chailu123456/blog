@@ -2,7 +2,6 @@ import axios from 'axios';
 
 class Server {
   constructor(BASE_API) {
-    console.log(BASE_API);
     this.init(BASE_API);
     return this.instance;
   }
@@ -37,7 +36,6 @@ class Server {
   response({yes}) {
     this.instance.interceptors.response.use(res => {
       // 对响应数据做点啥
-      console.log(res);
       return yes(res);
     }, err => {
       // 对请求错误做些什么

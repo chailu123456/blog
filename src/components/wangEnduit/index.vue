@@ -1,5 +1,9 @@
 <template>
     <div class="do-editor">
+      <div class="edit-title" v-if="title">
+        <span class="titles">标题</span>
+        <el-input v-model="title" placeholder="请输入内容"></el-input>
+      </div>
       <div class="editor">
         <div ref="toolbar" class="toolbar">
       </div>
@@ -11,12 +15,14 @@
 <script>
 import E from 'wangeditor'  
 import 'wangeditor/release/wangEditor.min.css'
+import api from '@/api/api.js';
+import './index.scss';
 export default {
   name: 'editoritem', 
   data() {
     return {
       editor: null,  
-      info_: null
+      info_: null,
     }
   },
   model: {
@@ -27,11 +33,18 @@ export default {
     value: {
       type: String,
       default: ''
+    },
+    title: {
+      type: String,
+      default: ''
     },  
     isClear: {
       type: Boolean,
       default: false
     }
+  },
+  created() {
+    console.log(this._props)
   },
   watch: {
     isClear(val) {
@@ -40,7 +53,10 @@ export default {
         this.editor.txt.clear()
         this.info_ = null
       }  
-    },  
+    }, 
+    title(val) {
+      if(val) this.val = val
+    },
     value: function(value) {
       if (value !== this.editor.txt.html()) {
         this.editor.txt.html(this.value)
@@ -56,8 +72,8 @@ export default {
     seteditor() {
       this.editor = new E(this.$refs.toolbar, this.$refs.editor)  
       this.editor.customConfig.uploadImgShowBase64 = true // base 64 存储图片  
-      this.editor.customConfig.uploadImgServer = ''// 填写配置服务器端地址  
-      this.editor.customConfig.uploadImgHeaders = { }// 自定义 header  
+      this.editor.customConfig.uploadImgServer = '/upload/img'// 填写配置服务器端地址  
+      this.editor.customConfig.uploadImgHeaders = { }// 自定义 header
       this.editor.customConfig.uploadFileName = 'file' // 后端接受上传文件的参数名  
       this.editor.customConfig.uploadImgParams = {  
           // 如果版本 <=v3.1.0 ，属性值会自动进行 encode ，此处无需 encode  
@@ -92,11 +108,24 @@ export default {
         'fullscreen' // 全屏  
       ]
       this.editor.customConfig.customUploadImg = function (files, insert) {
-        // files 是 input 中选中的文件列表
-        // insert 是获取图片 url 后，插入到编辑器的方法
+        let file = files[0];
+        console.log(file)
+        var data;
+        var reader = new FileReader();
+        reader.readAsDataURL(file) //转BASE64
+        reader.onload= async function(e) {
+          let a = {
+            base: e.target.result
+          }
+          data = await api.img_upload(a);
+          console.log(data)
+          // files 是 input 中选中的文件列表
+          // insert 是获取图片 url 后，插入到编辑器的方法
 
-        // 上传代码返回结果之后，将图片插入到编辑器中
-        insert(imgUrl)
+          // 上传代码返回结果之后，将图片插入到编辑器中
+          let imgUrl = 'http://localhost:8088/'+ data.data.url
+          insert(imgUrl)
+        }
       }
       this.editor.customConfig.onchange = (html) => {  
         this.info_ = html // 绑定当前逐渐地值  

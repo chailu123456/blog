@@ -16,9 +16,10 @@
       <div class="article-content-title">
         <!-- <p>前端技术</p> -->
         <el-tabs v-model="activeName" @tab-click="handleClick(activeName)">
-          <el-tab-pane label="HTML" name="HTML"></el-tab-pane>
-          <el-tab-pane label="JS" name="JS"></el-tab-pane>
-          <el-tab-pane label="其它" name="其它"></el-tab-pane>
+          <el-tab-pane label="全部" name="0"></el-tab-pane>
+          <el-tab-pane label="HTML" name="1"></el-tab-pane>
+          <el-tab-pane label="JS" name="2"></el-tab-pane>
+          <el-tab-pane label="其它" name="3"></el-tab-pane>
         </el-tabs>
       </div>
       <div class="article-content-list">
@@ -35,32 +36,22 @@
           <div class="content-list-saying">
             <h4 class="saying-title">每日一句</h4>
             <div class="saying-content">
-              <h3>{{time}}</h3>
+              <h3>{{updatetime}}</h3>
               <p>别让你不能做的事妨碍到你能做的事。</p>
             </div>
           </div> 
           <div class="hot-artice">
             <h4 class="saying-title">热门文章</h4>
             <ul class="hot-list-left">
-              <li>
-                <img src="@/assets/web.jpg" alt="">
+              <li v-for="(item,index) in hotArtic" :key="index">
+                <img class="title" src="@/assets/web.jpg" alt="">
                 <div class="hot-show">
                   <div class="hot-show-title">
-                    前端那些不能说的秘密那些不能说的秘密那些不能说的秘密
+                    {{item.title}}
                   </div>
-                  <div class="hot-show-time">
-                    2020-08-15 10:29:35
-                  </div>
-                </div>
-              </li>
-              <li>
-                <img src="@/assets/web.jpg" alt="">
-                <div class="hot-show">
-                  <div class="hot-show-title">
-                    前端那些不能说说的秘密
-                  </div>
-                  <div class="hot-show-time">
-                    2020-08-15 10:29:35
+                  <div class="hot-show-updatetime">
+                    <i class="el-icon-time"></i>
+                    {{new Date().format(item.updatetime)}}
                   </div>
                 </div>
               </li>
@@ -74,64 +65,39 @@
 <script>
 import './index.scss';
 import ArticleList from './components/articeList';
+import api from '@/api/api.js';
 export default {
   name: 'Article',
    data() {
     return {
       input: '',
-      activeName: 'HTML',
-      articleDate: [
-        {
-          id:1,
-          title: '前端那些不能说的秘密~~~~~~~HTML',
-          content: `<p>详解vue 路由跳转四种方式 (带参数)</p>`,
-          time: 1600929330281
-        }
-      ],
-      time: new Date().format('Y年m月d日 星期z')
+      activeName: '0',
+      articleDate: [],
+      hotArtic:[],
+      form:{
+        type: 0
+      },
+      updatetime: new Date().format('Y年m月d日 星期z')
     }
+  },
+  created() {
+    this.getDate(this.form)
   },
   methods: {
     handleClick(tab) {
-      if(tab === 'HTML') {
-        this.articleDate = [
-          {
-            id:2,
-            title: '前端那些不能说的秘密~~~~~~~HTML',
-            content: `<p>详解vue 路由跳转四种方式 (带参数)</p>`,
-            time: 1600929330281
-          }
-        ]
-      } else if(tab === 'JS') {
-        this.articleDate = [
-          {
-            id:3,
-            title: '前端那些不能说的秘密~~~~~~~JS',
-            content: `<p>详解vue 路由跳转四种方式 (带参数)</p>`,
-            time: 1600929330281
-          },
-          {
-            id:5,
-            title: '前端那些不能说的秘密~~~~JAVASCRIPT',
-            content: `<p>详解vue 路由跳转四种方式 (带参数)</p>`,
-            time: 1600929330281
-          }
-        ]
-      } else {
-        this.articleDate = [
-          {
-            title: '前端那些不能说的秘密~~~~~~~其它',
-            content: `<p>其它一些数据</p>`,
-            time: 1600929330281
-          }
-        ]
-      }
-      
-      console.log(tab);
+     this.getDate({type:tab})
     },
     search() {
-      console.log(456)
       this.$store.dispatch('increment','大家答案')
+    },
+    async getDate(params) {
+      let data = await api.blogList(params);
+      if(data.data.length > 0) {
+        this.articleDate = data.data;
+        this.hotArtic = JSON.parse(JSON.stringify(data.data)).slice(0, 2)
+        console.log(this.hotArtic)
+      }
+      console.log(data)
     }
   },
   components: {

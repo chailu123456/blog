@@ -2,7 +2,7 @@
   <div class="do-artice-list">
     <ul class="content-list-left" v-if="articleDate.length > 0">
       <li v-for="(item, index) in articleDate" :key="index" @click="lookDetail(item)">
-        <img src="@/assets/web.jpg" alt="">
+        <img class="title-img" src="@/assets/web.jpg" alt="">
         <div class="article-show">
           <div class="article-show-title">
             {{item.title}}
@@ -11,7 +11,7 @@
           </div>
           <div class="article-show-time">
             <i class="el-icon-time"></i>
-            {{new Date().format(item.time)}}
+            {{new Date().format(item.updatetime)}}
           </div>
         </div>
       </li>
@@ -22,6 +22,7 @@
   </div>
 </template>
 <script>
+import './index.scss';
 export default {
   props: {
     articleDate:{

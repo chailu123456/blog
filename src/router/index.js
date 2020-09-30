@@ -31,6 +31,11 @@ export default new Router({
           component: () => import('@/pages/about'),
           name: 'about',
         },
+        {
+          path: '/manage',
+          component: () => import('@/pages/manage'),
+          name: 'manage',
+        },
       ]
     },
     {
