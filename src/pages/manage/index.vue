@@ -13,9 +13,9 @@
     <el-dialog
       title="编辑"
       :visible.sync="dialogVisible"
-      width="46%"
+      width="780px"
       :before-close="handleClose">
-      <editor-bar class="publish-content-edit" v-model="detail" :title="title" :isClear="isClear" @change="change"></editor-bar>  
+      <editor-bar class="publish-content-edit" v-model="detail" :edit_title="title" :isClear="isClear" @change="change"></editor-bar>  
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">取 消</el-button>
         <el-button type="primary" @click="submit">确 定</el-button>
@@ -73,8 +73,6 @@ export default {
         .catch(_ => {});
     },
     remove(id) {
-      console.log(id)
-
       this.$confirm('此操作将永久删除, 是否继续?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
@@ -89,11 +87,18 @@ export default {
     },
     async removeDate(params) {
       let data = await api.blog_delete(params);
-      console.log(data)
+      this.getDate({type: 0})
     },
     async upDate(params) {
       let data = await api.blog_upload(params);
       console.log(data)
+      if(data.code === 200) {
+        this.$message({
+          message: '成功',
+          type: 'success'
+        });
+        this.$router.push('/article')
+      }
     },
     async getDate(params) {
       let data = await api.blogList(params);

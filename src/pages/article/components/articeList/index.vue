@@ -22,6 +22,7 @@
   </div>
 </template>
 <script>
+
 import './index.scss';
 export default {
   props: {
@@ -36,6 +37,8 @@ export default {
     return {
       
     }
+  },
+  created() {
   },
   methods: {
     lookDetail(val) {

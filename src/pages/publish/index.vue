@@ -47,10 +47,7 @@ export default {
         content: this.detail,
       }
       this.getDate(val)
-      // this.$message({
-      //   message: '你不配,因为你傻',
-      //   type: 'warning'
-      // });
+      
     },
     cancle() {
       this.$message({
@@ -61,6 +58,13 @@ export default {
     async getDate(params) {
       let data = await api.blogAdd(params);
       console.log(data)
+      if(data.code === 200) {
+        this.$message({
+          message: '成功',
+          type: 'success'
+        });
+        this.$router.push('/article')
+      }
     }
   },
   components: {

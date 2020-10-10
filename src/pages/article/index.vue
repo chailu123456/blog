@@ -22,7 +22,7 @@
           <el-tab-pane label="其它" name="3"></el-tab-pane>
         </el-tabs>
       </div>
-      <div class="article-content-list">
+      <div class="article-content-list" v-loading="loading">
         <ArticleList :articleDate = articleDate></ArticleList>
         <div class="content-list-right">
           <div class="content-list-search">
@@ -77,6 +77,7 @@ export default {
       form:{
         type: 0
       },
+      loading: true,
       updatetime: new Date().format('Y年m月d日 星期z')
     }
   },
@@ -95,9 +96,10 @@ export default {
       if(data.data.length > 0) {
         this.articleDate = data.data;
         this.hotArtic = JSON.parse(JSON.stringify(data.data)).slice(0, 2)
-        console.log(this.hotArtic)
+      } else {
+        this.articleDate = []
       }
-      console.log(data)
+      this.loading = false
     }
   },
   components: {

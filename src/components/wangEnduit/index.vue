@@ -1,14 +1,12 @@
 <template>
     <div class="do-editor">
-      <div class="edit-title" v-if="title">
+      <div class="edit-title" v-if="edit_title">
         <span class="titles">标题</span>
-        <el-input v-model="title" placeholder="请输入内容"></el-input>
+        <el-input v-model="edit_title" placeholder="请输入内容"></el-input>
       </div>
       <div class="editor">
-        <div ref="toolbar" class="toolbar">
-      </div>
-        <div ref="editor" class="text">
-      </div>
+        <div ref="toolbar" class="toolbar"></div>
+        <div ref="editor" class="text"></div>
     </div>
   </div>
 </template>
@@ -34,7 +32,7 @@ export default {
       type: String,
       default: ''
     },
-    title: {
+    edit_title: {
       type: String,
       default: ''
     },  

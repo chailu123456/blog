@@ -29,12 +29,37 @@ import { mapState, mapActions } from 'vuex';
 export default {
    data() {
     return {
-      activeName: 'article'
+      activeName: this.currentTab
     }
   },
   methods: {
     handleClick(tab, event) {
-      this.$router.push(`/${tab}`)
+      console.log(tab)
+      if(tab === 'manage') {
+        this.$prompt('我的生日是？', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          inputErrorMessage: '内容不能为空'
+        }).then(({ value }) => {
+          console.log(value)
+          if (value === '0103'){
+            this.$store.dispatch('tabselect',tab)
+            this.$router.push(`/${tab}`)
+          }
+          else {
+            this.$message({
+              type: 'warn',
+              message: '回答错误'
+            });
+            console.log(this)
+          }
+        }).catch(() => {
+          console.log(2)     
+        });
+      } else {
+        this.$store.dispatch('tabselect',tab)
+        this.$router.push(`/${tab}`)
+      }
     },
     loginOut() {
       localStorage.clear()
@@ -44,10 +69,12 @@ export default {
   },
   computed: {
     ...mapState({
-      username: state => state.username
+      username: state => state.username,
+      currentTab: state => state.currentTab,
     }),
     ...mapActions([
-      'increment'
+      'increment',
+      'tabselect'
     ])
   }
 }
