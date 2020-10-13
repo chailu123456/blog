@@ -26,6 +26,10 @@
             cursor: pointer;
           }
         }
+        span.public-time {
+          width: 15%;
+          color: #999;
+        }
       }
       li:nth-of-type(odd) {
         background: #f5f5f5;

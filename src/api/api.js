@@ -16,6 +16,12 @@ class Index extends Base {
     })
   }
 
+  blogSearch (params) {
+    return this.Http.get('/search', {
+      params
+    })
+  }
+
   blogListDetail (params) {
     return this.Http.get('/blog_list_detail', {
       params

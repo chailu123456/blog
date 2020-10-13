@@ -1,4 +1,36 @@
 .do-blog-about {
-  width: 1000px;
+  width: 700px;
   margin: 0 auto;
+  .about-person {
+    h3{
+      margin: 20px 0;
+      line-height: 30px;
+      font-size: 24px;
+      font-weight: normal;
+      color: #3f2863;
+    }
+    .person-introduce {
+    display: flex;
+    justify-content: flex-start;
+    margin-left:30px;
+      .introduce-img {
+        width: 300px;
+      }
+      .introduce-show {
+        padding: 0 20px;
+        width: 400px;
+        p {
+          line-height: 40px;
+        }
+      }
+    }
+    .contact {
+      margin-left: 30px;
+      font-size: 14px;
+      p {
+        line-height: 20px;
+        color: #3f2863;
+      }
+    }
+  }
 }

@@ -90,6 +90,17 @@ export default {
     },
     search() {
       this.$store.dispatch('increment','大家答案')
+      this.searchDate({searchVal: this.input})
+    },
+    async searchDate(params) {
+      let data = await api.blogSearch(params);
+      if(data.data.length > 0) {
+        this.articleDate = data.data;
+        this.hotArtic = JSON.parse(JSON.stringify(data.data)).slice(0, 2)
+      } else {
+        this.articleDate = []
+      }
+      this.loading = false
     },
     async getDate(params) {
       let data = await api.blogList(params);

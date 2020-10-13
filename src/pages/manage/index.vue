@@ -4,7 +4,7 @@
       <p class="manage-header">标题</p>
       <ul>
         <li v-for="(item,index) in allArticle" :key="index">
-          <p class="manage-list-title">{{item.title}}</p>
+          <p class="manage-list-title">{{item.title}} <span class="public-time">({{new Date().format(item.updatetime)}})</span> </p>
           <span @click="edit(item)" class="edit">编辑</span>
           <span @click="remove(item.id)" class="remove">删除</span>
         </li>
