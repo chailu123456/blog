@@ -15,7 +15,7 @@
       :visible.sync="dialogVisible"
       width="780px"
       :before-close="handleClose">
-      <editor-bar class="publish-content-edit" v-model="detail" :edit_title="title" :isClear="isClear" @change="change"></editor-bar>  
+      <editor-bar class="publish-content-edit" v-model="detail" :edit_title="title" :type='2' :isClear="isClear" @change="change"></editor-bar>  
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">取 消</el-button>
         <el-button type="primary" @click="submit">确 定</el-button>

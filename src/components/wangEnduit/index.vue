@@ -1,6 +1,6 @@
 <template>
     <div class="do-editor">
-      <div class="edit-title" v-if="edit_title">
+      <div class="edit-title" v-if="type">
         <span class="titles">标题</span>
         <el-input v-model="edit_title" placeholder="请输入内容"></el-input>
       </div>
@@ -35,7 +35,11 @@ export default {
     edit_title: {
       type: String,
       default: ''
-    },  
+    },
+    type: {
+      type: String,
+      default: '0'
+    }, 
     isClear: {
       type: Boolean,
       default: false
