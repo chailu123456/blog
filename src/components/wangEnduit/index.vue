@@ -1,6 +1,6 @@
 <template>
     <div class="do-editor">
-      <div class="edit-title" v-if="type">
+      <div class="edit-title" v-if="type === 2">
         <span class="titles">标题</span>
         <el-input v-model="edit_title" placeholder="请输入内容"></el-input>
       </div>

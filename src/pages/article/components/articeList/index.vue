@@ -16,7 +16,7 @@
         </div>
       </li>
     </ul>
-    <div v-else class="no-data">
+    <div v-else style="padding:20px;text-align:center;" class="no-data">
       暂无数据
     </div>
   </div>
