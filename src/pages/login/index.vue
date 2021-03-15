@@ -57,7 +57,7 @@ export default {
         if (valid) {
           let data = await api.login(this.ruleForm);
           console.log(data)
-          if(data.data.length > 0) {
+          if(data.code > 0) {
             this.$store.dispatch('increment', this.ruleForm.account).then(v => {
               this.$router.push({ path: '/' })
             })

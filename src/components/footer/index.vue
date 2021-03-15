@@ -1,6 +1,7 @@
 <template>
   <div class="footer">
     <div class="footer-bottom">
+      <p>府谷市民小柴</p>
       <p>粤ICP备20058414号</p>
       <p>粤公网安备 44030502006007号</p>
     </div>
